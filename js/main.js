@@ -154,10 +154,7 @@ function renderPhotos() {
                     loading="lazy"
                 >
 
-                <div class="card-meta">
-                    <span class="card-title">${photo.title}</span>
-                    <span class="card-type">${photo.type}</span>
-                </div>
+                <div class="card-meta"></div>
             </article>
         `)
         .join("");

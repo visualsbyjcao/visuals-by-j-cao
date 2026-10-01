@@ -94,7 +94,7 @@ button {
     display: grid;
     grid-template-columns: 1.15fr 0.85fr;
     gap: 7vw;
-    align-items: end;
+    align-items: center;
 }
 
 .eyebrow {
@@ -129,47 +129,39 @@ button {
 
 
 /* =========================
-   HERO VISUAL
+   HERO IMAGE
 ========================= */
 
 .hero-mark {
-    position: relative;
-
+    width: 100%;
     min-height: 430px;
 
+    aspect-ratio: 4 / 1;
+
+    position: relative;
     overflow: hidden;
 
-    background:
-        linear-gradient(
-            135deg,
-            #272521 0%,
-            #171614 45%,
-            #080808 100%
-        );
+    background-image: url("../hero.jpg");
+    background-size: cover;
+    background-position: center;
 }
 
 .hero-mark::before {
     content: "";
 
     position: absolute;
-
-    width: 80%;
-    height: 125%;
-
-    top: -15%;
-    right: -20%;
-
-    transform: rotate(12deg);
+    inset: 0;
 
     background:
         linear-gradient(
-            145deg,
-            #858078,
-            #302e29 55%,
-            #090909
+            135deg,
+            transparent 0%,
+            transparent 25%,
+            rgba(36, 35, 31, 0.2) 45%,
+            rgba(11, 11, 11, 0.9) 100%
         );
 
-    opacity: 0.75;
+    z-index: 2;
 }
 
 .hero-mark::after {
@@ -183,6 +175,8 @@ button {
 
     font-size: 10px;
     letter-spacing: 0.3em;
+
+    z-index: 3;
 }
 
 
@@ -541,6 +535,8 @@ footer a:hover {
 
     .hero-mark {
         min-height: 340px;
+        width: 100%;
+        aspect-ratio: 4 / 1;
     }
 
     .section {
@@ -591,43 +587,5 @@ footer a:hover {
 
     footer {
         padding: 25px 20px;
-    }
-}
-}
-
-.hero {
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-}
-
-.hero-mark {
-    width: 100%;
-    aspect-ratio: 4 / 1;
-    background: linear-gradient(135deg, #24231f, #111);
-    position: relative;
-    overflow: hidden;
-}
-
-.hero-mark::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        135deg,
-        transparent 0%,
-        transparent 25%,
-        rgba(36, 35, 31, 0.2) 45%,
-        rgba(11, 11, 11, 0.9) 100%
-    );
-}
-
-@media (max-width: 800px) {
-    .hero {
-        grid-template-columns: 1fr;
-    }
-
-    .hero-mark {
-        width: 100%;
-        aspect-ratio: 4 / 1;
     }
 }
