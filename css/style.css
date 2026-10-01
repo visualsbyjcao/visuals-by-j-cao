@@ -593,3 +593,41 @@ footer a:hover {
         padding: 25px 20px;
     }
 }
+}
+
+.hero {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+}
+
+.hero-mark {
+    width: 100%;
+    aspect-ratio: 4 / 1;
+    background: linear-gradient(135deg, #24231f, #111);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-mark::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        135deg,
+        transparent 0%,
+        transparent 25%,
+        rgba(36, 35, 31, 0.2) 45%,
+        rgba(11, 11, 11, 0.9) 100%
+    );
+}
+
+@media (max-width: 800px) {
+    .hero {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-mark {
+        width: 100%;
+        aspect-ratio: 4 / 1;
+    }
+}
