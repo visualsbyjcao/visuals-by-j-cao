@@ -1,3 +1,4 @@
+
 const photoCategories = [
     "All",
     "Sports",
@@ -22,6 +23,10 @@ const videoGrid = document.getElementById("video-grid");
 const photoFilters = document.getElementById("photo-filters");
 const videoFilters = document.getElementById("video-filters");
 
+const scrollProgress = document.querySelector(".scroll-progress");
+const scrollProgressFill = document.querySelector(".scroll-progress-fill");
+const backToTopButton = document.getElementById("back-to-top");
+
 let media = {
     photos: [],
     videos: []
@@ -30,6 +35,59 @@ let media = {
 let activePhotoCategory = "All";
 let activeVideoCategory = "All";
 
+
+/* =========================
+   SCROLL PROGRESS
+========================= */
+
+function updateScrollProgress() {
+    const scrollableHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
+
+    const scrollPosition = window.scrollY;
+
+    let progress = 0;
+
+    if (scrollableHeight > 0) {
+        progress = Math.min(
+            100,
+            Math.max(0, (scrollPosition / scrollableHeight) * 100)
+        );
+    }
+
+    scrollProgressFill.style.width = `${progress}%`;
+
+    scrollProgress.setAttribute(
+        "aria-valuenow",
+        String(Math.round(progress))
+    );
+
+    // Show the button only after leaving the top of the page.
+    backToTopButton.hidden = scrollPosition <= 20;
+}
+
+window.addEventListener("scroll", updateScrollProgress, {
+    passive: true
+});
+
+window.addEventListener("resize", updateScrollProgress);
+
+
+/* =========================
+   BACK TO TOP
+========================= */
+
+backToTopButton.addEventListener("click", () => {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
+
+
+/* =========================
+   LOAD MEDIA
+========================= */
 
 async function loadMedia() {
     try {
@@ -68,6 +126,7 @@ function renderPhotoFilters() {
             <button
                 class="filter ${category === activePhotoCategory ? "active" : ""}"
                 data-category="${category}"
+                type="button"
             >
                 ${category}
             </button>
@@ -95,6 +154,7 @@ function renderVideoFilters() {
             <button
                 class="filter ${category === activeVideoCategory ? "active" : ""}"
                 data-category="${category}"
+                type="button"
             >
                 ${category}
             </button>
@@ -201,22 +261,11 @@ function renderVideos() {
 
 
 /* =========================
-   SMOOTH NAVIGATION
+   INITIALIZE
 ========================= */
 
-function scrollToId(id) {
-    const element = document.getElementById(id);
+// Set the correct initial state before the user scrolls.
+updateScrollProgress();
 
-    if (element) {
-        element.scrollIntoView({
-            behavior: "smooth"
-        });
-    }
-}
-
-
-/* =========================
-   START
-========================= */
-
+// Load the portfolio media and render its filters.
 loadMedia();

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +16,45 @@
 
 <body>
 
+    <!-- SCROLL PROGRESS BAR -->
+    <div
+        class="scroll-progress"
+        role="progressbar"
+        aria-label="Page scroll progress"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuenow="0"
+    >
+        <div class="scroll-progress-fill"></div>
+    </div>
+
+    <!-- BACK TO TOP -->
+    <button
+        class="back-to-top"
+        id="back-to-top"
+        type="button"
+        aria-label="Back to top"
+        title="Back to top"
+        hidden
+    >
+        <svg
+            viewBox="0 0 24 24"
+            width="21"
+            height="21"
+            fill="none"
+            aria-hidden="true"
+        >
+            <path
+                d="M12 19V5M5.5 11.5 12 5l6.5 6.5"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            />
+        </svg>
+    </button>
+
+    <!-- NAVIGATION -->
     <header class="nav">
         <div class="brand">VISUALS BY J CAO</div>
 
@@ -33,7 +73,6 @@
         </nav>
     </header>
 
-
     <main>
 
         <!-- HERO -->
@@ -42,8 +81,8 @@
                 <p class="eyebrow">SPORTS · PEOPLE · TRAVEL</p>
 
                 <h1>
-                    Visions<br>
-                    that tell stories.
+                    Visuals<br>
+                    by John Cao.
                 </h1>
 
                 <p class="hero-description">
@@ -51,9 +90,9 @@
                     photography by John Cao.
                 </p>
             </div>
+
             <div class="hero-mark"></div>
         </section>
-
 
         <!-- PHOTOS -->
         <section id="photos" class="section">
@@ -69,7 +108,6 @@
 
         </section>
 
-
         <!-- VIDEOS -->
         <section id="videos" class="section">
 
@@ -84,29 +122,40 @@
 
         </section>
 
-
         <!-- ABOUT -->
         <section id="about" class="section about">
 
-            <div>
+            <div class="about-heading">
                 <p class="eyebrow">ABOUT</p>
 
                 <h2>
                     Sports.<br>
                     People.<br>
-                    Places.
+                    Travel.
                 </h2>
             </div>
 
-            <p>
-                I’m a photographer focused on athletics, people, and travel.
-                I’m interested in the moments that happen between the obvious
-                ones — the emotion, movement, atmosphere, and details that
-                make visuals into a story.
+            <p class="about-description">
+                Content creator in the Boston area. I focus on
+		representing athletes, people, and events colorfully
+		and cinematically.
             </p>
 
-        </section>
+            <!-- TEAMS PHOTOGRAPHED
+                 Add more teams by duplicating a team-item below. -->
+            <div class="teams-photographed">
+                <p class="eyebrow">TEAMS PHOTOGRAPHED</p>
 
+                <ul class="team-list">
+                    <li class="team-item">ASHLAND SOCCER</li>
+                    <li class="team-item">ASHLAND TRACK AND FIELD</li>
+		    <li class="team-item">ASHLAND BASEBALL</li>
+		    <li class="team-item">FRAMINGHAM YOUTH HOCKEY</li>
+		    <li class="team-item">SLAM VOLLEYBALL</li>
+                </ul>
+            </div>
+
+        </section>
 
         <!-- CONTACT -->
         <section id="contact" class="section contact">
@@ -125,7 +174,7 @@
 
     </main>
 
-
+    <!-- FOOTER -->
     <footer>
         <span>VISUALS BY J CAO</span>
 
@@ -137,7 +186,6 @@
             @visualsbyjcao
         </a>
     </footer>
-
 
     <script src="js/main.js"></script>
 

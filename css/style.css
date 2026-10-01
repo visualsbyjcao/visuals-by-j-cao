@@ -1,3 +1,4 @@
+
 :root {
     --bg: #0a0a0a;
     --surface: #111111;
@@ -6,6 +7,10 @@
     --muted: #96938d;
     --line: #292929;
     --max-width: 1600px;
+
+    --glass-fill: rgba(125, 125, 125, 0.25);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --card-radius: 10px;
 }
 
 * {
@@ -14,6 +19,7 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 90px;
 }
 
 body {
@@ -29,6 +35,129 @@ a {
 
 button {
     font: inherit;
+}
+
+
+/* =========================
+   SCROLL PROGRESS
+========================= */
+
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+
+    width: 100%;
+    height: 2px;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    pointer-events: none;
+}
+
+.scroll-progress-fill {
+    width: 0%;
+    height: 100%;
+
+    background: rgba(205, 205, 205, 0.9);
+
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.12);
+
+    will-change: width;
+}
+
+
+/* =========================
+   LIQUID GLASS BACK TO TOP
+========================= */
+
+.back-to-top {
+    position: fixed;
+    left: 50%;
+    bottom: 28px;
+    z-index: 500;
+
+    width: 54px;
+    height: 54px;
+    padding: 0;
+
+    display: grid;
+    place-items: center;
+
+    color: rgba(255, 255, 255, 0.92);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.19),
+            rgba(255, 255, 255, 0.035) 48%,
+            rgba(0, 0, 0, 0.15)
+        ),
+        var(--glass-fill);
+
+    border: 1px solid var(--glass-border);
+    border-radius: 50%;
+
+    backdrop-filter: blur(22px) saturate(155%);
+    -webkit-backdrop-filter: blur(22px) saturate(155%);
+
+    box-shadow:
+        0 8px 28px rgba(0, 0, 0, 0.32),
+        inset 0 1px 1px rgba(255, 255, 255, 0.22),
+        inset 0 -1px 1px rgba(255, 255, 255, 0.04);
+
+    cursor: pointer;
+
+    transform: translate(-50%, 0);
+    opacity: 1;
+
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        opacity 0.25s ease,
+        transform 0.25s ease;
+}
+
+.back-to-top[hidden] {
+    display: none;
+}
+
+.back-to-top:not([hidden]) {
+    animation: glass-button-appear 0.3s ease both;
+}
+
+.back-to-top:hover {
+    background-color: rgba(175, 175, 175, 0.3);
+    border-color: rgba(255, 255, 255, 0.34);
+
+    box-shadow:
+        0 10px 32px rgba(0, 0, 0, 0.38),
+        inset 0 1px 2px rgba(255, 255, 255, 0.3);
+
+    transform: translate(-50%, -3px);
+}
+
+.back-to-top:active {
+    transform: translate(-50%, 0) scale(0.94);
+}
+
+.back-to-top:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.8);
+    outline-offset: 4px;
+}
+
+@keyframes glass-button-appear {
+    from {
+        opacity: 0;
+        transform: translate(-50%, 10px) scale(0.92);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0) scale(1);
+    }
 }
 
 
@@ -49,7 +178,9 @@ button {
     z-index: 100;
 
     background: rgba(10, 10, 10, 0.88);
+
     backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
 
     border-bottom: 1px solid var(--line);
 }
@@ -67,6 +198,7 @@ button {
 
 .nav nav a {
     color: var(--muted);
+
     font-size: 11px;
     letter-spacing: 0.12em;
     text-decoration: none;
@@ -123,6 +255,7 @@ button {
     margin: 34px 0 0;
 
     color: var(--muted);
+
     font-size: 15px;
     line-height: 1.7;
 }
@@ -189,6 +322,8 @@ button {
 
     margin: 0 auto;
     padding: 8vw 5vw;
+
+    scroll-margin-top: 90px;
 }
 
 .section-header {
@@ -276,6 +411,42 @@ button {
     overflow: hidden;
 
     background: var(--surface);
+
+    border: 1px solid rgba(255, 255, 255, 0.11);
+    border-radius: var(--card-radius);
+
+    isolation: isolate;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.035);
+
+    transition:
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+/* Fine glass-like rim around each card */
+.card::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+
+    border: 1px solid rgba(255, 255, 255, 0.075);
+    border-radius: inherit;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.055),
+            transparent 24%,
+            transparent 76%,
+            rgba(255, 255, 255, 0.025)
+        );
+
+    pointer-events: none;
 }
 
 .card img,
@@ -285,6 +456,8 @@ button {
 
     display: block;
 
+    border-radius: inherit;
+
     transition: transform 0.5s ease;
 }
 
@@ -293,11 +466,23 @@ button {
     transform: scale(1.025);
 }
 
+.card:hover {
+    border-color: rgba(255, 255, 255, 0.22);
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+
+/* Existing image caption gradient */
 .card::after {
     content: "";
 
     position: absolute;
     inset: 0;
+    z-index: 1;
+
+    border-radius: inherit;
 
     pointer-events: none;
 
@@ -315,7 +500,7 @@ button {
     right: 16px;
     bottom: 14px;
 
-    z-index: 2;
+    z-index: 3;
 
     display: flex;
     justify-content: space-between;
@@ -353,7 +538,7 @@ button {
     top: 50%;
     left: 50%;
 
-    z-index: 3;
+    z-index: 4;
 
     width: 48px;
     height: 48px;
@@ -374,6 +559,11 @@ button {
     pointer-events: none;
 }
 
+/* Keep the glass rim above the video play icon */
+.video::after {
+    z-index: 1;
+}
+
 
 /* =========================
    ABOUT
@@ -381,10 +571,19 @@ button {
 
 .about {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8vw;
+
+    grid-template-columns: 0.85fr 1.15fr 0.9fr;
+    gap: 5vw;
+
+    align-items: start;
 
     border-top: 1px solid var(--line);
+}
+
+.about-heading,
+.about-description,
+.teams-photographed {
+    min-width: 0;
 }
 
 .about h2 {
@@ -396,7 +595,7 @@ button {
     letter-spacing: -0.06em;
 }
 
-.about > p {
+.about-description {
     max-width: 560px;
     margin: 0;
 
@@ -404,6 +603,41 @@ button {
 
     font-size: 15px;
     line-height: 1.8;
+}
+
+/* Teams photographed */
+.teams-photographed .eyebrow {
+    margin-bottom: 22px;
+}
+
+.team-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+
+    padding: 0;
+    margin: 0;
+
+    list-style: none;
+}
+
+.team-item {
+    padding: 15px 0;
+
+    border-top: 1px solid var(--line);
+
+    color: var(--text);
+
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    line-height: 1.6;
+
+    overflow-wrap: anywhere;
+}
+
+.team-item:last-child {
+    border-bottom: 1px solid var(--line);
 }
 
 
@@ -480,7 +714,7 @@ footer a:hover {
    EMPTY CATEGORY
 ========================= */
 
-#empty {
+.empty-message {
     padding: 70px 20px;
 
     color: var(--muted);
@@ -494,6 +728,17 @@ footer a:hover {
 /* =========================
    MOBILE
 ========================= */
+
+@media (max-width: 1000px) {
+    .about {
+        grid-template-columns: 1fr 1fr;
+        gap: 45px;
+    }
+
+    .teams-photographed {
+        grid-column: 2;
+    }
+}
 
 @media (max-width: 800px) {
 
@@ -574,7 +819,15 @@ footer a:hover {
 
     .about {
         grid-template-columns: 1fr;
-        gap: 50px;
+        gap: 40px;
+    }
+
+    .teams-photographed {
+        grid-column: auto;
+    }
+
+    .teams-photographed .eyebrow {
+        margin-bottom: 16px;
     }
 
     .contact {
@@ -585,7 +838,39 @@ footer a:hover {
         margin-bottom: 35px;
     }
 
+    .contact a {
+        font-size: 12px;
+        overflow-wrap: anywhere;
+    }
+
     footer {
         padding: 25px 20px;
+        gap: 20px;
+    }
+
+    .back-to-top {
+        bottom: 20px;
+
+        width: 50px;
+        height: 50px;
+    }
+}
+
+
+/* =========================
+   REDUCED MOTION
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
     }
 }
