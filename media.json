@@ -5,6 +5,36 @@
       "title": "JohnCaoSwiming",
       "type": "Sports · swimming",
       "src": "photos/swimming/JohnCaoSwiming.jpg"
+    },
+    {
+      "category": "Soccer",
+      "title": "JohnCaoSoccer",
+      "type": "Sports · soccer",
+      "src": "photos/soccer/JohnCaoSoccer.jpg"
+    },
+    {
+      "category": "Soccer",
+      "title": "JohnCaoSoccer2",
+      "type": "Sports · soccer",
+      "src": "photos/soccer/JohnCaoSoccer2.jpg"
+    },
+    {
+      "category": "Wrestling",
+      "title": "JohnCaoWrestling   Copy",
+      "type": "Sports · wrestling",
+      "src": "photos/wrestling/JohnCaoWrestling - Copy.jpg"
+    },
+    {
+      "category": "Baseball",
+      "title": "JohnCaoBaseball   Copy",
+      "type": "Sports · baseball",
+      "src": "photos/baseball/JohnCaoBaseball - Copy.jpg"
+    },
+    {
+      "category": "Volleyball",
+      "title": "JohnCaoVolleyball",
+      "type": "Sports · volleyball",
+      "src": "photos/volleyball/JohnCaoVolleyball.png"
     }
   ],
   "videos": []
