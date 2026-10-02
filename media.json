@@ -2,164 +2,164 @@
   "photos": [
     {
       "category": "Swimming",
-      "title": "2024 12 20 08 12 35 380",
-      "type": "Sports · swimming",
+      "group": "Sports",
+      "alt": "Swimming photograph by Visuals by J Cao",
       "src": "photos/swimming/2024-12-20_08-12-35_380.jpeg"
     },
     {
       "category": "Swimming",
-      "title": "JohnCaoSwiming",
-      "type": "Sports · swimming",
+      "group": "Sports",
+      "alt": "Swimming photograph by Visuals by J Cao",
       "src": "photos/swimming/JohnCaoSwiming.jpg"
     },
     {
       "category": "Swimming",
-      "title": "Senior12 21 24 (1 Of 6)",
-      "type": "Sports · swimming",
+      "group": "Sports",
+      "alt": "Swimming photograph by Visuals by J Cao",
       "src": "photos/swimming/Senior12-21-24 (1 of 6).jpg"
     },
     {
       "category": "Swimming",
-      "title": "Priso26 (1 Of 2)",
-      "type": "Sports · swimming",
+      "group": "Sports",
+      "alt": "Swimming photograph by Visuals by J Cao",
       "src": "photos/swimming/priso26 (1 of 2).jpg"
     },
     {
       "category": "Swimming",
-      "title": "Priso26 (2 Of 2)",
-      "type": "Sports · swimming",
+      "group": "Sports",
+      "alt": "Swimming photograph by Visuals by J Cao",
       "src": "photos/swimming/priso26 (2 of 2).jpg"
     },
     {
       "category": "Soccer",
-      "title": "JohnCaoSoccer",
-      "type": "Sports · soccer",
+      "group": "Sports",
+      "alt": "Soccer photograph by Visuals by J Cao",
       "src": "photos/soccer/JohnCaoSoccer.jpg"
     },
     {
       "category": "Soccer",
-      "title": "JohnCaoSoccer2",
-      "type": "Sports · soccer",
+      "group": "Sports",
+      "alt": "Soccer photograph by Visuals by J Cao",
       "src": "photos/soccer/JohnCaoSoccer2.jpg"
     },
     {
       "category": "Soccer",
-      "title": "SoccerPinkPS7",
-      "type": "Sports · soccer",
+      "group": "Sports",
+      "alt": "Soccer photograph by Visuals by J Cao",
+      "src": "photos/soccer/Screenshot 2026-10-01 212631.png"
+    },
+    {
+      "category": "Soccer",
+      "group": "Sports",
+      "alt": "Soccer photograph by Visuals by J Cao",
       "src": "photos/soccer/SoccerPinkPS7.jpg"
     },
     {
       "category": "Soccer",
-      "title": "VarSoccer2025 (1 Of 4) 2",
-      "type": "Sports · soccer",
+      "group": "Sports",
+      "alt": "Soccer photograph by Visuals by J Cao",
       "src": "photos/soccer/VarSoccer2025 (1 of 4)-2.jpg"
     },
     {
       "category": "Soccer",
-      "title": "VarSoccer2025 (18 Of 19)",
-      "type": "Sports · soccer",
+      "group": "Sports",
+      "alt": "Soccer photograph by Visuals by J Cao",
       "src": "photos/soccer/VarSoccer2025 (18 of 19).jpg"
     },
     {
-      "category": "Soccer",
-      "title": "VarSoccer2025 (3 Of 3) 2",
-      "type": "Sports · soccer",
-      "src": "photos/soccer/VarSoccer2025 (3 of 3)-2.jpg"
-    },
-    {
       "category": "Wrestling",
-      "title": "JohnCaoWrestling   Copy",
-      "type": "Sports · wrestling",
+      "group": "Sports",
+      "alt": "Wrestling photograph by Visuals by J Cao",
       "src": "photos/wrestling/JohnCaoWrestling - Copy.jpg"
     },
     {
       "category": "Wrestling",
-      "title": "Ps1",
-      "type": "Sports · wrestling",
+      "group": "Sports",
+      "alt": "Wrestling photograph by Visuals by J Cao",
       "src": "photos/wrestling/ps1.jpg"
     },
     {
       "category": "Wrestling",
-      "title": "Ps3",
-      "type": "Sports · wrestling",
+      "group": "Sports",
+      "alt": "Wrestling photograph by Visuals by J Cao",
       "src": "photos/wrestling/ps3.jpg"
     },
     {
       "category": "Wrestling",
-      "title": "Ps4",
-      "type": "Sports · wrestling",
+      "group": "Sports",
+      "alt": "Wrestling photograph by Visuals by J Cao",
       "src": "photos/wrestling/ps4.jpg"
     },
     {
       "category": "Baseball",
-      "title": "2025 05 21 07 06 18 610",
-      "type": "Sports · baseball",
+      "group": "Sports",
+      "alt": "Baseball photograph by Visuals by J Cao",
       "src": "photos/baseball/2025-05-21_07-06-18_610.jpeg"
     },
     {
       "category": "Baseball",
-      "title": "JohnCaoBaseball   Copy",
-      "type": "Sports · baseball",
+      "group": "Sports",
+      "alt": "Baseball photograph by Visuals by J Cao",
       "src": "photos/baseball/JohnCaoBaseball - Copy.jpg"
     },
     {
       "category": "Baseball",
-      "title": "Cam (2 Of 7)",
-      "type": "Sports · baseball",
+      "group": "Sports",
+      "alt": "Baseball photograph by Visuals by J Cao",
       "src": "photos/baseball/cam (2 of 7).jpg"
     },
     {
       "category": "Baseball",
-      "title": "Cam (3 Of 7)",
-      "type": "Sports · baseball",
+      "group": "Sports",
+      "alt": "Baseball photograph by Visuals by J Cao",
       "src": "photos/baseball/cam (3 of 7).jpg"
     },
     {
       "category": "Baseball",
-      "title": "Cam (4 Of 7)",
-      "type": "Sports · baseball",
+      "group": "Sports",
+      "alt": "Baseball photograph by Visuals by J Cao",
       "src": "photos/baseball/cam (4 of 7).jpg"
     },
     {
       "category": "Volleyball",
-      "title": "2025 02 08 08 37 22 650",
-      "type": "Sports · volleyball",
+      "group": "Sports",
+      "alt": "Volleyball photograph by Visuals by J Cao",
       "src": "photos/volleyball/2025-02-08_08-37-22_650.jpeg"
     },
     {
       "category": "Volleyball",
-      "title": "2025 02 08 09 32 43 770",
-      "type": "Sports · volleyball",
+      "group": "Sports",
+      "alt": "Volleyball photograph by Visuals by J Cao",
       "src": "photos/volleyball/2025-02-08_09-32-43_770.jpeg"
     },
     {
       "category": "Volleyball",
-      "title": "F3EDA292 5918 4F7A 9975 A4AE0FA5A3AFblur4ps (1 Of 1)",
-      "type": "Sports · volleyball",
+      "group": "Sports",
+      "alt": "Volleyball photograph by Visuals by J Cao",
       "src": "photos/volleyball/F3EDA292-5918-4F7A-9975-A4AE0FA5A3AFblur4ps (1 of 1).png"
     },
     {
       "category": "Volleyball",
-      "title": "JohnCaoVolleyball",
-      "type": "Sports · volleyball",
+      "group": "Sports",
+      "alt": "Volleyball photograph by Visuals by J Cao",
       "src": "photos/volleyball/JohnCaoVolleyball.png"
     },
     {
       "category": "Volleyball",
-      "title": "Bw (1 Of 1)",
-      "type": "Sports · volleyball",
+      "group": "Sports",
+      "alt": "Volleyball photograph by Visuals by J Cao",
       "src": "photos/volleyball/bw (1 of 1).jpg"
     },
     {
       "category": "Volleyball",
-      "title": "LylaPSv3 (1 Of 1)",
-      "type": "Sports · volleyball",
+      "group": "Sports",
+      "alt": "Volleyball photograph by Visuals by J Cao",
       "src": "photos/volleyball/lylaPSv3 (1 of 1).png"
     },
     {
       "category": "Volleyball",
-      "title": "Lylabatches (1 Of 1) 5",
-      "type": "Sports · volleyball",
+      "group": "Sports",
+      "alt": "Volleyball photograph by Visuals by J Cao",
       "src": "photos/volleyball/lylabatches (1 of 1)-5.jpg"
     }
   ],
