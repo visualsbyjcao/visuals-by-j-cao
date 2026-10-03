@@ -1263,13 +1263,16 @@ html.modal-open body {
 
 /* =====================================================
    VISUAL COLLECTION SELECTORS
-   Scoped to the filter containers to preserve gallery cards.
 ===================================================== */
 
 .collection-selector {
     display: grid;
+
+    /* Three large cards across desktop */
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 14px;
+
+    gap: 16px;
+
     margin: 0 0 30px;
 }
 
@@ -1278,99 +1281,174 @@ html.modal-open body {
     display: none !important;
 }
 
+
+/* =========================
+   COLLECTION CARDS
+========================= */
+
 .collection-card {
     position: relative;
+
     display: block;
+
     width: 100%;
     min-width: 0;
+
     padding: 0;
+
     overflow: hidden;
     isolation: isolate;
-    aspect-ratio: 4 / 3;
+
+    /*
+     * Portrait-oriented presentation.
+     * Tall enough to feel like individual
+     * photographic pieces rather than buttons.
+     */
+    aspect-ratio: 4 / 5;
+
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: var(--card-radius);
+
     background: #171717;
     color: var(--text);
+
     text-align: left;
+
     cursor: pointer;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.04);
-    transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+
+    box-shadow:
+        0 2px 10px rgba(0, 0, 0, 0.16),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.25s ease;
+
     clip-path: inset(0 round var(--card-radius));
 }
+
+
+/* =========================
+   COLLECTION CARD IMAGE
+========================= */
 
 .collection-card img.collection-card-image,
 .collection-card .collection-card-placeholder {
     position: absolute;
     inset: 0;
+
     display: block;
+
     width: 100%;
     height: 100%;
+
     border-radius: inherit;
 }
 
 .collection-card img.collection-card-image {
     object-fit: cover;
     object-position: center;
+
     transition: transform 0.55s ease;
 }
 
 .collection-card-placeholder {
     background:
-        radial-gradient(ellipse at 80% 15%, rgba(255,255,255,0.08), transparent 42%),
-        linear-gradient(135deg, #202020, #101010 70%);
+        radial-gradient(
+            ellipse at 80% 15%,
+            rgba(255, 255, 255, 0.08),
+            transparent 42%
+        ),
+        linear-gradient(
+            135deg,
+            #202020,
+            #101010 70%
+        );
 }
+
+
+/* =========================
+   DARK IMAGE GRADIENT
+========================= */
 
 .collection-card-shade {
     position: absolute;
     inset: 0;
+
     z-index: 1;
-    background: linear-gradient(180deg, rgba(0,0,0,0.02) 25%, rgba(0,0,0,0.2) 52%, rgba(0,0,0,0.82) 100%);
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.02) 25%,
+            rgba(0, 0, 0, 0.2) 52%,
+            rgba(0, 0, 0, 0.82) 100%
+        );
+
     pointer-events: none;
 }
 
 
 /* =========================
    COLLECTION CARD TITLES
-   Keep titles bottom-right.
+   HERO-STYLE TYPOGRAPHY
 ========================= */
 
 .collection-card-title {
     position: absolute;
-    right: 16px;
-    bottom: 15px;
+
+    right: 18px;
+    bottom: 18px;
+
     z-index: 2;
 
-    max-width: calc(100% - 32px);
+    max-width: calc(100% - 36px);
 
     color: #fff;
 
-    font-family: inherit;
-    font-size: clamp(12px, 1.25vw, 16px);
-    font-weight: 500;
+    /*
+     * Same font family as the HERO.
+     */
+    font-family: Arial, Helvetica, sans-serif;
 
-    letter-spacing: -0.015em;
-    line-height: 1.2;
+    /*
+     * Large display typography.
+     */
+    font-size: clamp(19px, 2vw, 31px);
+    font-weight: 600;
+
+    letter-spacing: -0.07em;
+    line-height: 0.87;
 
     text-align: right;
     text-transform: uppercase;
 
-    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.35);
+    text-shadow:
+        0 2px 18px rgba(0, 0, 0, 0.5);
 
     pointer-events: none;
 }
 
 
-/* DO NOT MOVE OR ALTER THE PHOTO/VIDEO COUNT */
+/* =========================
+   PHOTO / VIDEO COUNT
+   KEEP BOTTOM-LEFT
+========================= */
+
 .collection-card-count {
     position: absolute;
+
     left: 15px;
     bottom: 16px;
+
     z-index: 2;
 
     color: rgba(255, 255, 255, 0.72);
 
     font-size: 9px;
     letter-spacing: 0.08em;
+
     text-transform: uppercase;
 
     opacity: 0;
@@ -1378,13 +1456,24 @@ html.modal-open body {
     transition: opacity 0.2s ease;
 }
 
+
+/* =========================
+   FOCUS
+========================= */
+
 .collection-card:focus-visible,
 .all-collections-button:focus-visible {
     outline: 2px solid rgba(255, 255, 255, 0.88);
     outline-offset: 4px;
 }
 
+
+/* =========================
+   DESKTOP HOVER
+========================= */
+
 @media (hover: hover) and (pointer: fine) {
+
     .collection-card:hover {
         border-color: rgba(255, 255, 255, 0.34);
 
@@ -1392,7 +1481,7 @@ html.modal-open body {
             0 8px 26px rgba(0, 0, 0, 0.28),
             inset 0 1px 0 rgba(255, 255, 255, 0.08);
 
-        transform: translateY(-2px);
+        transform: translateY(-3px);
     }
 
     .collection-card:hover img.collection-card-image {
@@ -1412,10 +1501,12 @@ html.modal-open body {
 
 .collection-navigation {
     display: flex;
+
     align-items: center;
     justify-content: space-between;
 
     gap: 16px;
+
     min-height: 46px;
 
     margin: 0 0 24px;
@@ -1431,6 +1522,7 @@ html.modal-open body {
 
 .all-collections-button {
     display: inline-flex;
+
     align-items: center;
     justify-content: center;
 
@@ -1452,6 +1544,7 @@ html.modal-open body {
     color: var(--text);
 
     font-family: inherit;
+
     font-size: 11px;
     font-weight: 500;
 
@@ -1502,12 +1595,18 @@ html.modal-open body {
     transform: translateY(0) scale(0.98);
 }
 
+
+/* =========================
+   CURRENT COLLECTION TITLE
+========================= */
+
 .collection-current-title {
     overflow: hidden;
 
     color: var(--muted);
 
     font-family: inherit;
+
     font-size: 10px;
     font-weight: 500;
 
@@ -1515,29 +1614,50 @@ html.modal-open body {
 
     text-align: right;
     text-overflow: ellipsis;
+
     text-transform: uppercase;
+
     white-space: nowrap;
 }
 
+
+/* =========================
+   VIDEO COLLECTION CARDS
+========================= */
+
 .video-collection-selector .collection-card {
+    /*
+     * Keep video thumbnails horizontal because
+     * their source thumbnails are 16:9.
+     */
     aspect-ratio: 16 / 9;
 }
 
 .video-collection-card .collection-card-title {
-    font-size: clamp(12px, 1.1vw, 15px);
+    font-size: clamp(18px, 1.8vw, 29px);
 }
 
 .video-thumbnail-placeholder {
     display: block;
+
     width: 100%;
+
     aspect-ratio: 16 / 9;
-    background: linear-gradient(135deg, #202020, #080808);
+
+    background:
+        linear-gradient(
+            135deg,
+            #202020,
+            #080808
+        );
 }
 
 .card.video-no-thumbnail .video-thumbnail-placeholder {
     position: absolute;
     inset: 0;
+
     z-index: 0;
+
     height: 100%;
 }
 
@@ -1546,53 +1666,92 @@ html.modal-open body {
 }
 
 
+/* =====================================================
+   MOBILE
+===================================================== */
+
 @media (max-width: 800px) {
+
     .collection-selector {
+        /*
+         * Two large cards across mobile.
+         */
         grid-template-columns: repeat(2, minmax(0, 1fr));
+
         gap: 10px;
+
         margin-bottom: 26px;
+    }
+
+    .collection-card {
+        /*
+         * Still portrait, but slightly less extreme
+         * on a phone screen.
+         */
+        aspect-ratio: 4 / 5;
     }
 
     .collection-card-title {
         right: 12px;
-        bottom: 12px;
+        bottom: 13px;
 
         max-width: calc(100% - 24px);
 
-        font-family: inherit;
-        font-size: 12px;
-        font-weight: 500;
+        font-family: Arial, Helvetica, sans-serif;
 
-        letter-spacing: -0.01em;
-        line-height: 1.2;
+        font-size: clamp(16px, 4.3vw, 23px);
+        font-weight: 600;
+
+        letter-spacing: -0.065em;
+        line-height: 0.87;
 
         text-align: right;
     }
 
     /*
-     * Count position intentionally remains unchanged:
-     * bottom-left.
+     * Count stays bottom-left.
      */
     .collection-card-count {
         left: 12px;
         bottom: 13px;
+
         font-size: 8px;
     }
 
     .collection-navigation {
         min-height: 42px;
+
         margin-bottom: 20px;
     }
 
     .all-collections-button {
         min-height: 42px;
+
         padding: 0 16px;
+
         font-size: 9px;
         letter-spacing: 0.1em;
     }
+
+    /*
+     * Video collection thumbnails remain horizontal.
+     */
+    .video-collection-selector .collection-card {
+        aspect-ratio: 16 / 9;
+    }
+
+    .video-collection-card .collection-card-title {
+        font-size: clamp(15px, 4vw, 21px);
+    }
 }
 
+
+/* =====================================================
+   TOUCH DEVICES
+===================================================== */
+
 @media (hover: none) {
+
     .collection-card:hover {
         transform: none;
 
@@ -1608,7 +1767,13 @@ html.modal-open body {
     }
 }
 
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
 @media (prefers-reduced-motion: reduce) {
+
     .collection-card,
     .collection-card img.collection-card-image,
     .collection-card-count,
@@ -1616,24 +1781,33 @@ html.modal-open body {
         transition: none !important;
     }
 }
+
+
 /* =====================================================
    MOBILE VIDEO TOUCH FIX
-   Use a real grid for video cards on touch devices.
-   This avoids CSS multi-column hit-testing issues.
+   KEEP THIS AT THE VERY END
 ===================================================== */
 
 @media (max-width: 800px) {
+
     #video-grid {
         columns: unset;
+
         display: grid;
+
         grid-template-columns: repeat(2, minmax(0, 1fr));
+
         gap: 8px;
+
         align-items: start;
     }
 
     #video-grid .card.video {
         width: 100%;
+
         margin: 0;
+
         break-inside: auto;
     }
 }
+

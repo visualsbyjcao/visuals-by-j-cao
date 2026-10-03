@@ -64,6 +64,20 @@ function getVideosForCategory(category) {
     return media.videos.filter(video => videoMatchesCategory(video, category));
 }
 
+/* SCROLL TO SECTION */
+function scrollToSection(section) {
+    if (!section) return;
+
+    requestAnimationFrame(() => {
+        const top = section.getBoundingClientRect().top + window.scrollY;
+
+        window.scrollTo({
+            top: Math.max(0, top),
+            behavior: "smooth"
+        });
+    });
+}
+
 /* UNIQUE PHOTO THUMBNAILS */
 const usedPhotoThumbnails = new Set();
 
@@ -297,6 +311,8 @@ function renderPhotoFilters() {
                 renderPhotoNavigation();
                 renderPhotos();
                 setBrowsingVisibility();
+
+                scrollToSection(document.getElementById("photos"));
             });
         });
 
@@ -333,6 +349,8 @@ function renderPhotoNavigation() {
 
             renderPhotoFilters();
             setBrowsingVisibility();
+
+            scrollToSection(document.getElementById("photos"));
         });
 }
 
@@ -385,6 +403,8 @@ function renderVideoFilters() {
                 renderVideoNavigation();
                 renderVideos();
                 setBrowsingVisibility();
+
+                scrollToSection(document.getElementById("videos"));
             });
         });
 
@@ -424,6 +444,8 @@ function renderVideoNavigation() {
 
             renderVideoFilters();
             setBrowsingVisibility();
+
+            scrollToSection(document.getElementById("videos"));
         });
 }
 
