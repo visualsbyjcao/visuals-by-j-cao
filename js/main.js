@@ -35,11 +35,7 @@ let activeVideoCategory = "All";
 let browsingPhotos = false;
 let browsingVideos = false;
 
-
-/* =========================
-   SAFE CONTENT / HELPERS
-========================= */
-
+/* SAFE CONTENT / HELPERS */
 function escapeHTML(value) {
     return String(value ?? "").replace(/[&<>"']/g, character => ({
         "&": "&amp;",
@@ -68,18 +64,28 @@ function getVideosForCategory(category) {
     return media.videos.filter(video => videoMatchesCategory(video, category));
 }
 
-
-/* =========================
-   UNIQUE PHOTO THUMBNAILS
-========================= */
-
-// Keeps collection thumbnails from repeating.
-// If the first image is already being used,
-// the function tries the second, then third, etc.
+/* UNIQUE PHOTO THUMBNAILS */
 const usedPhotoThumbnails = new Set();
 
 function photoThumbnailFor(category) {
     const photos = getPhotosForCategory(category);
+
+    /*
+     * The All Photos collection always uses the LAST photo
+     * in the Travel category as its thumbnail.
+     *
+     * Because this reads directly from the Travel array,
+     * changing the order of Travel photos automatically
+     * changes the All Photos thumbnail.
+     */
+    if (category === "All") {
+        const travelPhotos = getPhotosForCategory("Travel");
+        const lastTravelPhoto = travelPhotos[travelPhotos.length - 1];
+
+        if (lastTravelPhoto?.src) {
+            return lastTravelPhoto.src;
+        }
+    }
 
     for (const photo of photos) {
         if (!photo?.src) continue;
@@ -90,15 +96,10 @@ function photoThumbnailFor(category) {
         }
     }
 
-    // If every image is already used, fall back to the first image.
     return photos[0]?.src || "";
 }
 
-
-/* =========================
-   UNIQUE VIDEO THUMBNAILS
-========================= */
-
+/* UNIQUE VIDEO THUMBNAILS */
 const usedVideoThumbnails = new Set();
 
 function getVideoThumbnail(video) {
@@ -129,10 +130,8 @@ function videoThumbnailFor(category) {
         }
     }
 
-    // If every thumbnail is already used, fall back to the first one.
     return getVideoThumbnail(videos[0]);
 }
-
 
 function imageMarkup(src, alt, className) {
     if (!src) {
@@ -141,7 +140,6 @@ function imageMarkup(src, alt, className) {
 
     return `<img class="${className}" src="${escapeHTML(src)}" alt="${escapeHTML(alt)}" loading="lazy">`;
 }
-
 
 function wireImageFallbacks(container) {
     container.querySelectorAll("img").forEach(image => {
@@ -154,11 +152,7 @@ function wireImageFallbacks(container) {
     });
 }
 
-
-/* =========================
-   SCROLL PROGRESS
-========================= */
-
+/* SCROLL PROGRESS */
 function updateScrollProgress() {
     if (!scrollProgress || !scrollProgressFill || !backToTopButton) return;
 
@@ -172,6 +166,7 @@ function updateScrollProgress() {
         : 0;
 
     scrollProgressFill.style.width = `${progress}%`;
+
     scrollProgress.setAttribute(
         "aria-valuenow",
         String(Math.round(progress))
@@ -183,11 +178,7 @@ function updateScrollProgress() {
 window.addEventListener("scroll", updateScrollProgress, { passive: true });
 window.addEventListener("resize", updateScrollProgress);
 
-
-/* =========================
-   BACK TO TOP
-========================= */
-
+/* BACK TO TOP */
 if (backToTopButton) {
     backToTopButton.addEventListener("click", () => {
         window.scrollTo({
@@ -197,11 +188,7 @@ if (backToTopButton) {
     });
 }
 
-
-/* =========================
-   LOAD MEDIA
-========================= */
-
+/* LOAD MEDIA */
 async function loadMedia() {
     try {
         const response = await fetch("media.json");
@@ -222,7 +209,6 @@ async function loadMedia() {
                 : []
         };
 
-        // Reset thumbnail tracking whenever media is loaded.
         usedPhotoThumbnails.clear();
         usedVideoThumbnails.clear();
 
@@ -257,10 +243,7 @@ async function loadMedia() {
     }
 }
 
-
 function setBrowsingVisibility() {
-    // The filter containers are reused for either the selector cards
-    // or the compact back-navigation row.
     if (photoFilters) photoFilters.hidden = false;
     if (photoGrid) photoGrid.hidden = !browsingPhotos;
 
@@ -268,16 +251,10 @@ function setBrowsingVisibility() {
     if (videoGrid) videoGrid.hidden = !browsingVideos;
 }
 
-
-/* =========================
-   PHOTO COLLECTION SELECTOR
-========================= */
-
+/* PHOTO COLLECTION SELECTOR */
 function renderPhotoFilters() {
     if (!photoFilters) return;
 
-    // Start fresh so thumbnail assignments always happen
-    // in the same order as the collection cards.
     usedPhotoThumbnails.clear();
 
     photoFilters.classList.add("collection-selector");
@@ -289,6 +266,7 @@ function renderPhotoFilters() {
 
         const thumbnail = photoThumbnailFor(category);
         const count = getPhotosForCategory(category).length;
+
         const mediaMarkup = imageMarkup(
             thumbnail,
             "",
@@ -325,7 +303,6 @@ function renderPhotoFilters() {
     wireImageFallbacks(photoFilters);
 }
 
-
 function renderPhotoNavigation() {
     if (!photoFilters) return;
 
@@ -359,16 +336,10 @@ function renderPhotoNavigation() {
         });
 }
 
-
-/* =========================
-   VIDEO COLLECTION SELECTOR
-========================= */
-
+/* VIDEO COLLECTION SELECTOR */
 function renderVideoFilters() {
     if (!videoFilters) return;
 
-    // Start fresh so thumbnail assignments always happen
-    // in the same order as the collection cards.
     usedVideoThumbnails.clear();
 
     videoFilters.classList.add(
@@ -420,7 +391,6 @@ function renderVideoFilters() {
     wireImageFallbacks(videoFilters);
 }
 
-
 function renderVideoNavigation() {
     if (!videoFilters) return;
 
@@ -457,11 +427,7 @@ function renderVideoNavigation() {
         });
 }
 
-
-/* =========================
-   PHOTOS
-========================= */
-
+/* PHOTOS */
 function renderPhotos() {
     if (!photoGrid) return;
 
@@ -508,11 +474,7 @@ function renderPhotos() {
     });
 }
 
-
-/* =========================
-   VIDEOS
-========================= */
-
+/* VIDEOS */
 function renderVideos() {
     if (!videoGrid) return;
 
@@ -547,9 +509,15 @@ function renderVideos() {
                             src="${escapeHTML(thumbnail)}"
                             alt="${escapeHTML(video.title || "Video thumbnail")}"
                             loading="lazy"
+                            draggable="false"
                         >`
                         : '<span class="video-thumbnail-placeholder" aria-hidden="true"></span>'
                 }
+
+                <span
+                    class="video-play-icon"
+                    aria-hidden="true"
+                ></span>
 
                 <div class="card-meta">
                     <span class="card-title">
@@ -573,16 +541,21 @@ function renderVideos() {
     });
 }
 
-
-// Keep event delegation so video cards continue to work
-// after every filter change.
+/*
+ * Keep event delegation so video cards continue to work
+ * after every filter change.
+ */
 if (videoGrid) {
     videoGrid.addEventListener("click", event => {
         const card = event.target.closest(".video[data-video-id]");
 
-        if (!card || !card.dataset.videoId) return;
+        if (!card || !videoGrid.contains(card)) return;
 
-        openYouTubeVideo(card.dataset.videoId);
+        const videoId = card.dataset.videoId;
+
+        if (!videoId) return;
+
+        openYouTubeVideo(videoId);
     });
 
     videoGrid.addEventListener("keydown", event => {
@@ -590,18 +563,18 @@ if (videoGrid) {
 
         const card = event.target.closest(".video[data-video-id]");
 
-        if (!card || !card.dataset.videoId) return;
+        if (!card || !videoGrid.contains(card)) return;
+
+        const videoId = card.dataset.videoId;
+
+        if (!videoId) return;
 
         event.preventDefault();
-        openYouTubeVideo(card.dataset.videoId);
+        openYouTubeVideo(videoId);
     });
 }
 
-
-/* =========================
-   YOUTUBE MODAL PLAYER
-========================= */
-
+/* YOUTUBE MODAL PLAYER */
 function openYouTubeVideo(videoId) {
     let modal = document.getElementById("youtube-modal");
 
@@ -650,19 +623,16 @@ function openYouTubeVideo(videoId) {
     modal.querySelector(".youtube-modal-close").focus();
 }
 
-
 function closeYouTubeVideo() {
     const modal = document.getElementById("youtube-modal");
 
     if (!modal) return;
 
-    // Removing the iframe stops playback.
     modal.querySelector(".youtube-player-wrap").innerHTML = "";
 
     modal.classList.remove("open");
     document.body.style.overflow = "";
 }
-
 
 document.addEventListener("keydown", event => {
     if (event.key === "Escape") {
@@ -670,10 +640,6 @@ document.addEventListener("keydown", event => {
     }
 });
 
-
-/* =========================
-   INITIALIZE
-========================= */
-
+/* INITIALIZE */
 updateScrollProgress();
 loadMedia();

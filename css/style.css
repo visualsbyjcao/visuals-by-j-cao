@@ -529,8 +529,16 @@ button {
    VIDEO PLAY BUTTON
 ========================= */
 
+/*
+ * The old Unicode "▶" depended on the device's font rendering,
+ * which could become an emoji-style icon on mobile.
+ *
+ * The circle and triangle are now separate CSS elements so the
+ * play icon renders consistently across desktop and mobile.
+ */
+
 .video::before {
-    content: "▶";
+    content: "";
 
     position: absolute;
 
@@ -542,20 +550,55 @@ button {
     width: 48px;
     height: 48px;
 
-    display: grid;
-    place-items: center;
-
     transform: translate(-50%, -50%);
 
     border: 1px solid rgba(255, 255, 255, 0.7);
     border-radius: 50%;
 
-    color: white;
-
-    font-size: 11px;
-    padding-left: 2px;
+    background: rgba(0, 0, 0, 0.08);
 
     pointer-events: none;
+}
+
+.video-play-icon {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    z-index: 5;
+
+    width: 0;
+    height: 0;
+
+    transform: translate(-42%, -50%);
+
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    border-left: 11px solid #fff;
+
+    pointer-events: none;
+}
+
+/*
+ * Make every purely visual video layer ignore touch/click
+ * hit-testing. The .card itself remains the interaction target.
+ */
+.card.video::before,
+.card.video::after,
+.card.video .video-play-icon {
+    pointer-events: none;
+}
+
+.card.video img,
+.card.video .video-thumbnail-placeholder {
+    pointer-events: none;
+}
+
+.card.video {
+    cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
 }
 
 /* Keep the glass rim above the video play icon */
@@ -873,6 +916,8 @@ footer a:hover {
         transition-duration: 0.01ms !important;
     }
 }
+
+
 /* =====================================================
    APPEND TO THE END OF css/style.css
 ===================================================== */
@@ -1083,6 +1128,8 @@ html.modal-open,
 html.modal-open body {
     overflow: hidden;
 }
+
+
 /* =========================
    YOUTUBE VIDEO MODAL
    Matches openYouTubeVideo() in js/main.js
@@ -1167,13 +1214,34 @@ html.modal-open body {
     border-color: rgba(255, 255, 255, 0.34);
 }
 
+
+/* =========================
+   VIDEO CARD TOUCH TARGET
+========================= */
+
 .card.video {
     cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .card.video:focus-visible {
     outline: 2px solid rgba(255, 255, 255, 0.8);
     outline-offset: 3px;
+}
+
+/*
+ * All visual layers inside video cards are explicitly removed
+ * from pointer hit-testing. This keeps the entire card itself
+ * as the touch target, including the right column on mobile.
+ */
+.card.video::before,
+.card.video::after,
+.card.video .video-play-icon,
+.card.video img,
+.card.video .video-thumbnail-placeholder,
+.card.video .card-meta {
+    pointer-events: none;
 }
 
 @media (max-width: 600px) {
@@ -1260,31 +1328,53 @@ html.modal-open body {
     pointer-events: none;
 }
 
+
+/* =========================
+   COLLECTION CARD TITLES
+   Keep titles bottom-right.
+========================= */
+
 .collection-card-title {
     position: absolute;
     right: 16px;
     bottom: 15px;
     z-index: 2;
+
     max-width: calc(100% - 32px);
+
     color: #fff;
+
+    font-family: inherit;
     font-size: clamp(12px, 1.25vw, 16px);
     font-weight: 500;
+
     letter-spacing: -0.015em;
     line-height: 1.2;
+
     text-align: right;
+    text-transform: uppercase;
+
     text-shadow: 0 1px 12px rgba(0, 0, 0, 0.35);
+
+    pointer-events: none;
 }
 
+
+/* DO NOT MOVE OR ALTER THE PHOTO/VIDEO COUNT */
 .collection-card-count {
     position: absolute;
     left: 15px;
     bottom: 16px;
     z-index: 2;
+
     color: rgba(255, 255, 255, 0.72);
+
     font-size: 9px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
+
     opacity: 0;
+
     transition: opacity 0.2s ease;
 }
 
@@ -1297,7 +1387,11 @@ html.modal-open body {
 @media (hover: hover) and (pointer: fine) {
     .collection-card:hover {
         border-color: rgba(255, 255, 255, 0.34);
-        box-shadow: 0 8px 26px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+        box-shadow:
+            0 8px 26px rgba(0, 0, 0, 0.28),
+            inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
         transform: translateY(-2px);
     }
 
@@ -1311,40 +1405,114 @@ html.modal-open body {
     }
 }
 
+
+/* =========================
+   COLLECTION NAVIGATION
+========================= */
+
 .collection-navigation {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     gap: 16px;
-    min-height: 34px;
+    min-height: 46px;
+
     margin: 0 0 24px;
     padding: 0 0 12px;
+
     border-bottom: 1px solid var(--line);
 }
+
+
+/* =========================
+   LIQUID GLASS RETURN BUTTON
+========================= */
 
 .all-collections-button {
     display: inline-flex;
     align-items: center;
-    min-height: 34px;
-    padding: 0;
-    border: 0;
-    background: transparent;
-    color: var(--muted);
-    font-size: 10px;
-    letter-spacing: 0.08em;
+    justify-content: center;
+
+    min-height: 46px;
+
+    padding: 0 20px;
+
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 999px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.14),
+            rgba(255, 255, 255, 0.035)
+        ),
+        rgba(125, 125, 125, 0.16);
+
+    color: var(--text);
+
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 500;
+
+    letter-spacing: 0.11em;
+    line-height: 1;
+
+    text-transform: uppercase;
+    white-space: nowrap;
+
     cursor: pointer;
-    transition: color 0.2s ease;
+
+    backdrop-filter: blur(16px) saturate(145%);
+    -webkit-backdrop-filter: blur(16px) saturate(145%);
+
+    box-shadow:
+        0 4px 16px rgba(0, 0, 0, 0.18),
+        inset 0 1px 1px rgba(255, 255, 255, 0.12);
+
+    transition:
+        color 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 .all-collections-button:hover {
-    color: var(--text);
+    color: #fff;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.19),
+            rgba(255, 255, 255, 0.055)
+        ),
+        rgba(145, 145, 145, 0.2);
+
+    border-color: rgba(255, 255, 255, 0.28);
+
+    box-shadow:
+        0 7px 20px rgba(0, 0, 0, 0.26),
+        inset 0 1px 2px rgba(255, 255, 255, 0.18);
+
+    transform: translateY(-1px);
+}
+
+.all-collections-button:active {
+    transform: translateY(0) scale(0.98);
 }
 
 .collection-current-title {
     overflow: hidden;
+
     color: var(--muted);
+
+    font-family: inherit;
     font-size: 10px;
+    font-weight: 500;
+
     letter-spacing: 0.12em;
+
     text-align: right;
     text-overflow: ellipsis;
     text-transform: uppercase;
@@ -1377,6 +1545,7 @@ html.modal-open body {
     display: none;
 }
 
+
 @media (max-width: 800px) {
     .collection-selector {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1387,10 +1556,23 @@ html.modal-open body {
     .collection-card-title {
         right: 12px;
         bottom: 12px;
+
         max-width: calc(100% - 24px);
+
+        font-family: inherit;
         font-size: 12px;
+        font-weight: 500;
+
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+
+        text-align: right;
     }
 
+    /*
+     * Count position intentionally remains unchanged:
+     * bottom-left.
+     */
     .collection-card-count {
         left: 12px;
         bottom: 13px;
@@ -1398,15 +1580,27 @@ html.modal-open body {
     }
 
     .collection-navigation {
+        min-height: 42px;
         margin-bottom: 20px;
+    }
+
+    .all-collections-button {
+        min-height: 42px;
+        padding: 0 16px;
+        font-size: 9px;
+        letter-spacing: 0.1em;
     }
 }
 
 @media (hover: none) {
     .collection-card:hover {
         transform: none;
+
         border-color: rgba(255, 255, 255, 0.12);
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+        box-shadow:
+            0 2px 10px rgba(0, 0, 0, 0.16),
+            inset 0 1px 0 rgba(255, 255, 255, 0.04);
     }
 
     .collection-card:hover img.collection-card-image {
