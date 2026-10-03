@@ -161,7 +161,164 @@
       "group": "Sports",
       "alt": "Volleyball photograph by Visuals by J Cao",
       "src": "photos/volleyball/lylabatches (1 of 1)-5.jpg"
+    },
+    {
+      "category": "Hockey",
+      "group": "Sports",
+      "alt": "Hockey photograph by Visuals by J Cao",
+      "src": "photos/hockey/2024-11-23_00-43-47_820.jpeg"
+    },
+    {
+      "category": "Hockey",
+      "group": "Sports",
+      "alt": "Hockey photograph by Visuals by J Cao",
+      "src": "photos/hockey/DanielHockey11-23 (11 of 34).jpg"
+    },
+    {
+      "category": "Hockey",
+      "group": "Sports",
+      "alt": "Hockey photograph by Visuals by J Cao",
+      "src": "photos/hockey/DanielHockey11-23 (13 of 34).jpg"
+    },
+    {
+      "category": "Hockey",
+      "group": "Sports",
+      "alt": "Hockey photograph by Visuals by J Cao",
+      "src": "photos/hockey/DanielHockey11-23 (4 of 34).jpg"
+    },
+    {
+      "category": "Seniors",
+      "group": "Seniors",
+      "alt": "Seniors photograph by Visuals by J Cao",
+      "src": "photos/seniors/2024-08-25_07-15-27_830.jpeg"
+    },
+    {
+      "category": "Seniors",
+      "group": "Seniors",
+      "alt": "Seniors photograph by Visuals by J Cao",
+      "src": "photos/seniors/2024-08-25_07-15-33_730.jpeg"
+    },
+    {
+      "category": "Seniors",
+      "group": "Seniors",
+      "alt": "Seniors photograph by Visuals by J Cao",
+      "src": "photos/seniors/AlfredoSeniorShoot (3 of 9).jpg"
+    },
+    {
+      "category": "Seniors",
+      "group": "Seniors",
+      "alt": "Seniors photograph by Visuals by J Cao",
+      "src": "photos/seniors/AlfredoSeniorShoot (5 of 9)-2.jpg"
+    },
+    {
+      "category": "Seniors",
+      "group": "Seniors",
+      "alt": "Seniors photograph by Visuals by J Cao",
+      "src": "photos/seniors/BeaSenior (1 of 1)-2.jpg"
+    },
+    {
+      "category": "Seniors",
+      "group": "Seniors",
+      "alt": "Seniors photograph by Visuals by J Cao",
+      "src": "photos/seniors/BeaSeniorShoot (1 of 1).jpg"
+    },
+    {
+      "category": "Seniors",
+      "group": "Seniors",
+      "alt": "Seniors photograph by Visuals by J Cao",
+      "src": "photos/seniors/emmaphotoshoot1 (14 of 32).jpg"
+    },
+    {
+      "category": "Seniors",
+      "group": "Seniors",
+      "alt": "Seniors photograph by Visuals by J Cao",
+      "src": "photos/seniors/emmaphotoshoot1 (18 of 32).jpg"
+    },
+    {
+      "category": "Seniors",
+      "group": "Seniors",
+      "alt": "Seniors photograph by Visuals by J Cao",
+      "src": "photos/seniors/emmaphotoshoot1 (9 of 32).jpg"
+    },
+    {
+      "category": "Seniors",
+      "group": "Seniors",
+      "alt": "Seniors photograph by Visuals by J Cao",
+      "src": "photos/seniors/lily (22 of 47).jpg"
+    },
+    {
+      "category": "Seniors",
+      "group": "Seniors",
+      "alt": "Seniors photograph by Visuals by J Cao",
+      "src": "photos/seniors/lily (8 of 47).jpg"
+    },
+    {
+      "category": "Travel",
+      "group": "Travel",
+      "alt": "Travel photograph by Visuals by J Cao",
+      "src": "photos/travel/2025-01-02_06-03-28_710.jpeg"
+    },
+    {
+      "category": "Travel",
+      "group": "Travel",
+      "alt": "Travel photograph by Visuals by J Cao",
+      "src": "photos/travel/Cruise2025 (1 of 1)-2PS.jpg"
+    },
+    {
+      "category": "Travel",
+      "group": "Travel",
+      "alt": "Travel photograph by Visuals by J Cao",
+      "src": "photos/travel/Europe (1 of 1).jpg"
+    },
+    {
+      "category": "Travel",
+      "group": "Travel",
+      "alt": "Travel photograph by Visuals by J Cao",
+      "src": "photos/travel/Europe (1 of 4).jpg"
+    },
+    {
+      "category": "Travel",
+      "group": "Travel",
+      "alt": "Travel photograph by Visuals by J Cao",
+      "src": "photos/travel/Europe (2 of 4).jpg"
+    },
+    {
+      "category": "Travel",
+      "group": "Travel",
+      "alt": "Travel photograph by Visuals by J Cao",
+      "src": "photos/travel/Europe (4 of 4).jpg"
+    },
+    {
+      "category": "Travel",
+      "group": "Travel",
+      "alt": "Travel photograph by Visuals by J Cao",
+      "src": "photos/travel/a (1 of 2).jpg"
     }
   ],
-  "videos": []
+  "videos": [
+    {
+      "id": "7c5WWauEjZw",
+      "title": "Beach in Vieques",
+      "category": "Travel",
+      "thumb": "https://i.ytimg.com/vi/7c5WWauEjZw/hqdefault.jpg"
+    },
+    {
+      "id": "a5t7inc0qZQ",
+      "title": "Ashland XTF",
+      "category": "Sports",
+      "thumb": "https://i.ytimg.com/vi/a5t7inc0qZQ/hqdefault.jpg"
+    },
+    {
+      "id": "WiB42uFfMDw",
+      "title": "Tropical Travel",
+      "category": "Travel",
+      "thumb": "https://i.ytimg.com/vi/WiB42uFfMDw/hqdefault.jpg"
+    },
+    {
+      "id": "tYSkR6a_KXk",
+      "title": "Alócate y Hazte Mía",
+      "category": "Travel",
+      "thumb": "https://i.ytimg.com/vi/tYSkR6a_KXk/hqdefault.jpg"
+    }
+  ]
 }
