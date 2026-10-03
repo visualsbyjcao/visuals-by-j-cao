@@ -1616,3 +1616,24 @@ html.modal-open body {
         transition: none !important;
     }
 }
+/* =====================================================
+   MOBILE VIDEO TOUCH FIX
+   Use a real grid for video cards on touch devices.
+   This avoids CSS multi-column hit-testing issues.
+===================================================== */
+
+@media (max-width: 800px) {
+    #video-grid {
+        columns: unset;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+        align-items: start;
+    }
+
+    #video-grid .card.video {
+        width: 100%;
+        margin: 0;
+        break-inside: auto;
+    }
+}
